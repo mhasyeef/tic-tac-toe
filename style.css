@@ -1,0 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Rubik+Glitch&display=swap');
+:root {
+  --pixelated-font: 'Press Start 2P', cursive;
+  --glitch-font: 'Rubik Glitch', cursive;
+}
+
+.gameboard{
+  display: grid;
+  grid-template-columns: repeat(3, 200px);
+  grid-template-rows: repeat(3, 200px);
+  gap: 5px;
+}
+
+body{
+  display: flex;
+  align-items: center;
+  flex-direction: column; 
+}
+
+header{
+  font-weight:bolder ;
+  font-size: larger;
+  font-family: var(--pixelated-font);
+  padding: 30px;
+}
+
+.squares{
+  display: flex;
+  background: rgb(101, 238, 225);
+  align-items: center;
+  justify-content: center;
+  font-family: var(--glitch-font);
+  font-size: 100px;
+  
+}
+
+.squares:hover {
+  opacity: 0.5;
+}
+
+.circle{
+  width: 150px;
+  height: 150px;
+}
+
+.cross{
+  width: 100px;
+  height: 100px;
+}
+
+.playerTurn {
+  font-family: var(--pixelated-font);
+}
