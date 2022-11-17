@@ -55,13 +55,20 @@ const game = (function() {
     
   }
 
-  return {gameboardArray, playerOne, playerTwo, turnsLeft, winningCombo, checkWinner, turnsLeft};
+  function restartGame() {
+    renderGameboard.resetButton.onclick = function() {
+      location.reload();
+    }
+  }
+
+  return {gameboardArray, playerOne, playerTwo, turnsLeft, winningCombo, checkWinner, turnsLeft, restartGame};
 })();
 
 const renderGameboard = (function() {
   //selectors
   const squares = document.querySelectorAll('.squares');
   const gameStatusDisplay = document.querySelector('.gameStatus');
+  const resetButton = document.querySelector('.resetBtn');
 
   //onclick event to generate Xs and Os on the gameboard
   for(let i = 0; i < squares.length; i++) {
@@ -88,12 +95,16 @@ const renderGameboard = (function() {
       }
 
       game.checkWinner();
+      game.restartGame();
+      // resetButton.onclick = function() {
+      //   location.reload();
+      // }
 
       console.log(game.gameboardArray);
     }, {once:true})
   }
    
-  return {gameStatusDisplay};
+  return {gameStatusDisplay, resetButton};
 })();
 
 

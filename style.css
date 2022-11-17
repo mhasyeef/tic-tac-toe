@@ -4,6 +4,10 @@
   --glitch-font: 'Rubik Glitch', cursive;
 }
 
+html{
+  background-color: rgb(251, 198, 99);
+}
+
 .gameboard{
   display: grid;
   grid-template-columns: repeat(3, 200px);
@@ -19,18 +23,19 @@ body{
 
 header{
   font-weight:bolder ;
-  font-size: larger;
+  font-size: 40px;
   font-family: var(--pixelated-font);
   padding: 30px;
 }
 
 .squares{
   display: flex;
-  background: rgb(101, 238, 225);
+  background: rgb(8, 8, 8);
   align-items: center;
   justify-content: center;
   font-family: var(--glitch-font);
   font-size: 100px;
+  color: #FFFFFF;
   
 }
 
@@ -52,3 +57,28 @@ header{
   font-family: var(--pixelated-font);
   padding: 30px;
 }
+
+.button {
+  padding: 10px;
+}
+
+.resetBtn {
+  background-color: #000000;
+  border: 2px solid #1A1A1A;
+  border-radius: 15px;
+  color: #FFFFFF;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 30px;
+  outline: none;
+  transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+  width: 100%;
+  font-family: var(--pixelated-font);
+}
+
+.resetBtn:hover {
+  box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
+  transform: translateY(-2px);
+}
+
