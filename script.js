@@ -3,11 +3,10 @@
 
 //factory function
 const createPlayer = (name, icon, turn) => {
-
   return {name, icon, turn};
 }
 
-// game object
+//game object
 const game = (function() {
 
   //gameboard array
@@ -17,6 +16,9 @@ const game = (function() {
   const playerOne = createPlayer('Player 1', 'O', true);
   const playerTwo = createPlayer('Player 2', 'X', false);
 
+  let turnsLeft = 9;
+
+  //winning combinations
   let winningCombo = [[0, 1, 2], 
                       [3, 4, 5], 
                       [6, 7, 8], 
@@ -26,13 +28,40 @@ const game = (function() {
                       [0, 4, 8], 
                       [2, 4, 6]];
 
-  return {gameboardArray, playerOne, playerTwo, winningCombo};
+  //to check the winner
+  function checkWinner() {
+    let roundWon = false;
+    for(let i = 0; i < game.winningCombo.length; i++) {
+      const condition = game.winningCombo[i];  //[0, 1, 2]...[3, 4, 5].. total of 8 winning combos
+      const cellA = game.gameboardArray[condition[0]]; //assign variable to inner array eg. [0,1,2]
+      const cellB = game.gameboardArray[condition[1]]; //assign variable to inner array eg. [0,1,2]
+      const cellC = game.gameboardArray[condition[2]]; //assign variable to inner array eg. [0,1,2]
+      //starting point the arrays are ""
+      if(cellA == "" || cellB == "" || cellC == "") {
+        console.log(roundWon);
+        continue;
+      }
+      //if the cells(Xs or Os) matches, winner is found
+      if(cellA == cellB && cellB == cellC) {
+        if(cellA && cellB && cellC === game.playerOne.icon) {
+          renderGameboard.gameStatusDisplay.textContent = `${game.playerOne.name} won!`
+        } else {
+          renderGameboard.gameStatusDisplay.textContent = `${game.playerTwo.name} won!`
+        }
+        console.log(roundWon);
+        break;
+      }
+    }
+    
+  }
+
+  return {gameboardArray, playerOne, playerTwo, turnsLeft, winningCombo, checkWinner, turnsLeft};
 })();
 
 const renderGameboard = (function() {
   //selectors
   const squares = document.querySelectorAll('.squares');
-  const playerTurnDisplay = document.querySelector('.playerTurn');
+  const gameStatusDisplay = document.querySelector('.gameStatus');
 
   //onclick event to generate Xs and Os on the gameboard
   for(let i = 0; i < squares.length; i++) {
@@ -43,28 +72,29 @@ const renderGameboard = (function() {
         game.gameboardArray.splice(i, 1, game.playerOne.icon)
         squares[i].textContent = game.playerOne.icon;
         game.playerOne.turn = false;
-        playerTurnDisplay.textContent = `${game.playerTwo.name} turn`;
+        game.turnsLeft -= 1;
+        gameStatusDisplay.textContent = `${game.playerTwo.name} turn`;        
       } else{
         //updates array value
         game.gameboardArray.splice(i, 1, game.playerTwo.icon)
         squares[i].textContent = game.playerTwo.icon;
         game.playerOne.turn = true;
-        playerTurnDisplay.textContent = `${game.playerOne.name} turn`;
+        game.turnsLeft -= 1;
+        gameStatusDisplay.textContent = `${game.playerOne.name} turn`;
       }
+
+      if(game.turnsLeft == 0) {
+        renderGameboard.gameStatusDisplay.textContent = `It's a draw!`
+      }
+
+      game.checkWinner();
 
       console.log(game.gameboardArray);
     }, {once:true})
   }
    
-  return {};
+  return {gameStatusDisplay};
 })();
-
-// const winnerDeclared = (function() {
-//     winningCombo.forEach((item, index) => {
-
-//     })
-//   return {};
-// })();
 
 
 

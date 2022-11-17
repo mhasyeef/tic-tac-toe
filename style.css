@@ -48,6 +48,7 @@ header{
   height: 100px;
 }
 
-.playerTurn {
+.gameStatus {
   font-family: var(--pixelated-font);
+  padding: 30px;
 }
