@@ -55,6 +55,7 @@ header{
 
 .gameStatus {
   font-family: var(--pixelated-font);
+  font-size: larger;
   padding: 30px;
 }
 
