@@ -1,9 +1,9 @@
 # tic-tac-toe
 Description:
-A simple Tic-Tac-Toe game created with HTML, CSS and JS made from The Odin Project curriculum that can be played with 2 players
+- A simple Tic-Tac-Toe game created with HTML, CSS and JS made from The Odin Project curriculum that can be played with 2 players
 
 Outcomes: 
-- Used CSS Flexbox module to create layout
+- Used CSS Grid to create layout
 - Deepened knowledge of DOM manipulation
 - Learned more about objects, factory functions and module pattern
 - Improved understanding of scope and closures
